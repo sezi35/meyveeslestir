@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meyve Eşleştirme Oyunu</title>
+    <!-- Google Fonts: Playful and modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background glowing blobs -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="game-container">
+        <header>
+            <h1 class="game-title">
+                <i class="fa-solid fa-apple-whole title-icon"></i>
+                Meyve Eşleştirmece
+            </h1>
+            <p class="game-subtitle">Kırmızı ve mavi meyveleri doğru renk yuvalarına sürükleyin ve yerleşimi tamamlayınca Kontrol Et'e tıklayın!</p>
+            
+            <div class="status-bar">
+                <div class="stat-card">
+                    <i class="fa-solid fa-star stat-icon score-icon"></i>
+                    <span>Skor: <strong id="score">0</strong>/4</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-clock stat-icon"></i>
+                    <span id="timer">Süre: <strong>00:00</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <!-- Top Box Row: Fruit Images -->
+            <section class="row-container">
+                <h2 class="row-title"><i class="fa-solid fa-images"></i> Meyveler</h2>
+                <div class="cards-row" id="images-container">
+                    <!-- Cards will be dynamically injected by JS to support shuffling -->
+                </div>
+            </section>
+
+            <!-- Bottom Box Row: Fruit Names (Drop targets) -->
+            <section class="row-container">
+                <h2 class="row-title"><i class="fa-solid fa-tags"></i> İsimler</h2>
+                <div class="slots-row" id="slots-container">
+                    <!-- Slots will be dynamically injected by JS to support shuffling -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="warning-alert" id="warning-box">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span id="warning-text">Yanlış eşleştirme! Tekrar dene.</span>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="check-btn">
+                    <i class="fa-solid fa-square-check"></i> Eşleştirmeleri Kontrol Et
+                </button>
+                <button class="btn btn-secondary" id="reset-btn">
+                    <i class="fa-solid fa-rotate-right"></i> Oyunu Sıfırla
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Victory Overlay Screen -->
+    <div class="victory-overlay" id="victory-modal">
+        <div class="victory-card">
+            <div class="confetti-canvas-container">
+                <canvas id="confetti-canvas"></canvas>
+            </div>
+            <div class="victory-icon-wrapper">
+                <i class="fa-solid fa-trophy victory-trophy"></i>
+            </div>
+            <h2 class="victory-title">Tebrikler! 🎉</h2>
+            <p class="victory-text">Tüm meyveleri doğru şekilde eşleştirdiniz!</p>
+            
+            <div class="victory-stats">
+                <div class="v-stat">
+                    <span class="v-label">Tamamlanan Süre</span>
+                    <span class="v-value" id="final-time">00:15</span>
+                </div>
+                <div class="v-stat">
+                    <span class="v-label">Hamle Sayısı</span>
+                    <span class="v-value" id="final-moves">4</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="play-again-btn">
+                <i class="fa-solid fa-gamepad"></i> Tekrar Oyna
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
